@@ -27,7 +27,7 @@ if(process.platform ==='win32'){
         output: process.stdout
     });
     r1.on('SIGINT', () => {
-        process.emit("SIGINT");
+        process.emit('SIGINT');
     });
 }
 
