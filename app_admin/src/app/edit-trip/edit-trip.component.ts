@@ -16,7 +16,7 @@ import { Trip } from '../models/trip';
 
 
 export class EditTripComponent implements OnInit {
-  public editForm!: FormGroup;
+  editForm!: FormGroup;
   trip!: any;
   submitted = false;
   message: string = '';
@@ -51,7 +51,7 @@ export class EditTripComponent implements OnInit {
       description:['', Validators.required]
 
 
-    })
+    });
 
     this.tripDataService.getTrip(tripCode)
       .subscribe({
@@ -70,9 +70,9 @@ export class EditTripComponent implements OnInit {
           console.log('Error ' + error);
         }
 
-    })
+    });
   }
-  public onSubmit() {
+  public onSubmit(): void {
     this.submitted = true;
 
     if(this.editForm.valid){
@@ -85,7 +85,7 @@ export class EditTripComponent implements OnInit {
           error: (error: any) => {
             console.log('Error: '+ error);
           }
-        })
+        });
     }
   }
   get f() {

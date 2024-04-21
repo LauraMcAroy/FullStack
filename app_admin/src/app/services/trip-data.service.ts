@@ -8,7 +8,9 @@ import { Authresponse } from '../models/authresponse';
 import { BROWSER_STORAGE } from '../storage';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 
 
 export class TripDataService {
@@ -33,10 +35,10 @@ export class TripDataService {
   }
 
  
-  url = 'http://localhost:3000/api/trips';
+
   
   getTrips() : Observable<Trip[]> {
-    return this.http.get<Trip[]>(this.url);
+    return this.http.get<Trip[]>(this.tripUrl);
   }
 
   addTrip(formData: Trip) : Observable<Trip[]>{
@@ -44,7 +46,7 @@ export class TripDataService {
       'Content-Type':'application/json',
       Authorization:`Bearer ${localStorage.getItem('travlr-token')}`,
     });
-    return this.http.post<Trip[]>(this.url,formData, {headers: headers});
+    return this.http.post<Trip[]>(this.tripUrl, formData, {headers: headers});
   }
 
   getTrip(tripCode: string) : Observable<Trip[]> {
